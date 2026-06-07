@@ -1,8 +1,8 @@
 ---
-title: "El primer Buen Fin de Sognare lo aposté a ojo"
-description: "Quinio acababa de comprar la marca, era mi primera vez llevando medios a esta escala, y no tenía con qué medir si estaba funcionando. Lo que pasó después es la razón por la que hoy construyo un modelo de atribución."
-pubDate: 2026-06-06
----
+   title: "El primer Buen Fin de Sognare lo aposté a ojo"
+   date: 2026-06-06
+   dek: "Quinio acababa de comprar la marca, era mi primera vez llevando medios a esta escala, y no tenía con qué medir si estaba funcionando. Lo que pasó después es la razón por la que hoy construyo un modelo de atribución."
+   ---
 
 Quinio compró Sognare en julio de 2025. Para noviembre yo tenía encima el primer Buen Fin de la marca bajo la nueva casa, presupuesto real por primera vez, y ningún modelo para saber si lo que estábamos a punto de hacer iba a funcionar.
 
