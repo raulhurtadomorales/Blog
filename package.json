@@ -1,0 +1,16 @@
+{
+  "name": "raulhurtadomorales-com",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Personal site and blog for Raúl Hurtado Morales",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.4.4"
+  }
+}

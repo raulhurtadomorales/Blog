@@ -1,0 +1,217 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allPosts = await getCollection('casos', ({ data }) => !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Casos — Raúl Hurtado"
+  ogTitle="Casos · Raúl Hurtado"
+  description="Casos desarrollados de marketing, medios y estrategia desde el lado cliente. Uno al mes."
+  canonicalPath="/casos/"
+>
+  <div class="casos-container">
+    <nav class="back fade d0">
+      <a href="/">← Raúl Hurtado</a>
+    </nav>
+
+    <header class="casos-header">
+      <h1 class="casos-title fade d1">Casos</h1>
+      <p class="casos-dek fade d2">
+        Casos desarrollados de marketing, medios y estrategia desde el lado cliente. El detrás de los
+        insights cortos. Uno al mes.
+      </p>
+    </header>
+
+    <main class="posts-list">
+      {posts.length === 0 ? (
+        <p class="empty fade d3">Pronto, el primero.</p>
+      ) : (
+        posts.map((post, i) => (
+          <article class={`post-item fade d${Math.min(i + 3, 7)}`}>
+            <a href={`/casos/${post.id}/`} class="post-link">
+              <h2 class="post-item-title">{post.data.title}</h2>
+              <time class="post-item-date" datetime={post.data.date.toISOString()}>
+                {formatDate(post.data.date)}
+              </time>
+              <p class="post-item-dek">{post.data.dek}</p>
+            </a>
+          </article>
+        ))
+      )}
+    </main>
+
+    <footer class="site-footer fade d7">
+      <span>© 2026 Raúl Hurtado</span>
+      <span>raulhurtadomorales.com</span>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .casos-container {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  .back {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-bottom: 4rem;
+  }
+
+  .back a {
+    color: var(--petroleo-55);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .back a:hover {
+    color: var(--petroleo);
+  }
+
+  /* Header */
+  .casos-header {
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--petroleo-12);
+    margin-bottom: 1rem;
+  }
+
+  .casos-title {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 30, 'WONK' 1, 'opsz' 144;
+    font-weight: 400;
+    font-size: clamp(3.5rem, 9vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: var(--petroleo);
+  }
+
+  .casos-dek {
+    margin-top: 1.5rem;
+    font-family: var(--sans);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.55;
+    color: var(--petroleo-80);
+    max-width: 48ch;
+  }
+
+  /* Posts list */
+  .posts-list {
+    padding-top: 1rem;
+  }
+
+  .post-item {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--petroleo-12);
+  }
+
+  .post-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .post-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease;
+  }
+
+  .post-link:hover .post-item-title {
+    color: var(--petroleo);
+    background-image: linear-gradient(transparent 80%, var(--camel-soft) 80%);
+    background-size: 100% 100%;
+    background-position: 0 100%;
+  }
+
+  .post-item-title {
+    display: inline;
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 35, 'opsz' 96;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    line-height: 1.18;
+    letter-spacing: -0.022em;
+    color: var(--petroleo);
+    transition: background-image 0.35s ease;
+    padding: 0 2px;
+  }
+
+  .post-item-date {
+    display: block;
+    margin-top: 1rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--petroleo-55);
+  }
+
+  .post-item-dek {
+    margin-top: 0.9rem;
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--petroleo-80);
+    max-width: 58ch;
+  }
+
+  .empty {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--petroleo-55);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  /* Footer */
+  .site-footer {
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--petroleo-12);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--petroleo-55);
+  }
+
+  @media (max-width: 640px) {
+    .casos-container {
+      padding: 1.75rem 1.5rem 3rem;
+    }
+    .back {
+      margin-bottom: 2.5rem;
+    }
+    .casos-header {
+      padding-bottom: 2.5rem;
+    }
+    .post-item {
+      padding: 2rem 0;
+    }
+    .site-footer {
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: flex-start;
+      margin-top: 4rem;
+    }
+  }
+</style>

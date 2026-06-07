@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Raúl Hurtado — Marketing leader · Estrategia de marca, medios y atribución"
+  ogTitle="Raúl Hurtado — Marketing leader"
+  description="Marketing leader con 15 años en la intersección de estrategia, medios y negocio. Diseña y opera sistemas de marketing para marcas de consumo masivo en México."
+  canonicalPath="/"
+>
+  <div class="container">
+    <section class="hero">
+      <h1 class="hero-name fade d1">Raúl Hurtado</h1>
+      <p class="hero-tagline fade d2">
+        Soy los dos, <span class="accent">más el&nbsp;negocio.</span>
+      </p>
+      <p class="hero-descriptor fade d3">
+        Marketing leader · Estrategia de marca, medios y atribución.
+      </p>
+    </section>
+
+    <main class="content">
+      <article class="row fade d4">
+        <div class="row-label">Acerca</div>
+        <div class="row-body">
+          <p>
+            Quince años operando en la intersección de estrategia creativa, medios y negocio. Vengo de agencias:
+            casa productora, BTL, ATL y medios regionales. Y crucé al lado cliente, donde entendí que las ideas
+            no importan si no mueven el negocio.
+          </p>
+          <p>
+            Hoy diseño y opero sistemas completos de marketing para un portafolio de marcas de consumo masivo en
+            México: estrategia, medios, creatividad, producción y un modelo propio de atribución que conecta
+            TV, radio y digital con ventas.
+          </p>
+        </div>
+      </article>
+
+      <article class="row fade d5">
+        <div class="row-label">Casos</div>
+        <div class="row-body">
+          <p>
+            Cada mes desarrollo un caso de campaña, decisión de medios o ejercicio operativo en profundidad — el
+            detrás de los insights cortos. <a href="/casos/">Lee los casos <span class="arrow">→</span></a>
+          </p>
+        </div>
+      </article>
+
+      <article class="row fade d6">
+        <div class="row-label">Prueba</div>
+        <div class="row-body">
+          <p>
+            Las marcas del portafolio han sostenido crecimientos de doble y triple dígito en sus campañas
+            principales. Una de ellas, Sognare, fue cubierta por
+            <a href="https://www.tvazteca.com/aztecanoticias/sognare-gana-el-viaje-de-tus-suenos-campana-que-conquisto-a-mexico" target="_blank" rel="noopener noreferrer">TV&nbsp;Azteca <span class="arrow">→</span></a>.
+          </p>
+        </div>
+      </article>
+
+      <article class="row fade d7">
+        <div class="row-label">Conectar</div>
+        <div class="row-body">
+          <p>
+            La conversación pasa por
+            <a href="https://www.linkedin.com/in/rahurtado" target="_blank" rel="noopener noreferrer">LinkedIn <span class="arrow">→</span></a>.
+            Ahí publico semanalmente sobre la intersección de creatividad y negocio desde adentro.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer fade d7">
+      <span>© 2026 Raúl Hurtado</span>
+      <span>raulhurtadomorales.com</span>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    padding: 2.5rem 3.5rem 4rem;
+  }
+
+  /* — Hero — */
+  .hero {
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 7rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -10% -15% 0 -15%;
+    background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(214, 178, 126, 0.3), transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hero-name {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 30, 'WONK' 1, 'opsz' 144;
+    font-weight: 400;
+    font-size: clamp(4.5rem, 14vw, 12.5rem);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+    color: var(--petroleo);
+  }
+
+  .hero-tagline {
+    margin-top: 2rem;
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 40, 'opsz' 72;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+    line-height: 1.18;
+    letter-spacing: -0.018em;
+    color: var(--petroleo);
+    max-width: 24ch;
+  }
+
+  .hero-tagline .accent {
+    color: var(--camel);
+    font-variation-settings: 'SOFT' 40, 'opsz' 72, 'WONK' 1;
+  }
+
+  .hero-descriptor {
+    margin-top: 2.5rem;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+    letter-spacing: -0.005em;
+    color: var(--petroleo-80);
+    max-width: 40ch;
+  }
+
+  /* — Content sections (split: label / body) — */
+  .content {
+    padding-top: 1rem;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 4rem;
+    padding: 2.75rem 0;
+    border-top: 1px solid var(--petroleo-12);
+    align-items: start;
+  }
+
+  .row-label {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--petroleo-35);
+    padding-top: 0.3rem;
+  }
+
+  .row-body {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(1.02rem, 1.2vw, 1.12rem);
+    line-height: 1.65;
+    color: var(--petroleo-80);
+    max-width: 58ch;
+  }
+
+  .row-body p + p {
+    margin-top: 1.1rem;
+  }
+
+  /* — Inline links: highlight-style "type-as-color" — */
+  .row-body a {
+    color: var(--petroleo);
+    text-decoration: none;
+    font-weight: 500;
+    background-image: linear-gradient(transparent 68%, var(--camel-soft) 68%);
+    background-size: 100% 100%;
+    padding: 0 2px;
+    transition: background-image 0.35s ease, color 0.35s ease;
+    white-space: nowrap;
+  }
+
+  .row-body a:hover {
+    background-image: linear-gradient(transparent 0%, var(--camel-soft) 0%);
+    color: var(--petroleo);
+  }
+
+  .row-body a .arrow {
+    display: inline-block;
+    transition: transform 0.35s ease;
+  }
+
+  .row-body a:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* — Footer — */
+  .site-footer {
+    margin-top: 6rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--petroleo-12);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--petroleo-55);
+  }
+
+  /* — Responsive — */
+  @media (max-width: 860px) {
+    .container { padding: 2rem 2rem 3rem; }
+    .hero { padding-top: 3.5rem; padding-bottom: 5rem; }
+    .row { grid-template-columns: 1fr; gap: 0.9rem; padding: 2.25rem 0; }
+    .row-label { padding-top: 0; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 1.75rem 1.5rem 2.5rem; }
+    .hero { padding-top: 2.5rem; }
+    .hero-tagline { margin-top: 1.5rem; max-width: none; }
+    .hero-descriptor { margin-top: 2rem; }
+    .site-footer {
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: flex-start;
+      margin-top: 4rem;
+    }
+  }
+</style>

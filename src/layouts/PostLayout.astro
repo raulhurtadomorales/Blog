@@ -1,0 +1,292 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  dek: string;
+  slug: string;
+}
+
+const { title, date, dek, slug } = Astro.props;
+
+const dateFormatted = date.toLocaleDateString('es-MX', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={`${title} — Casos · Raúl Hurtado`}
+  ogTitle={title}
+  description={dek}
+  canonicalPath={`/casos/${slug}/`}
+>
+  <div class="post-container">
+    <nav class="back fade d0">
+      <a href="/casos/">← Casos</a>
+    </nav>
+
+    <article>
+      <header class="post-header">
+        <h1 class="post-title fade d1">{title}</h1>
+        <time class="post-date fade d2" datetime={date.toISOString()}>
+          {dateFormatted}
+        </time>
+      </header>
+
+      <div class="post-body fade d3">
+        <slot />
+      </div>
+
+      <footer class="post-footer fade d4">
+        <a href="/casos/" class="back-link">← Volver a casos</a>
+        <span class="byline">Raúl Hurtado · {dateFormatted}</span>
+      </footer>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .post-container {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* Back nav */
+  .back {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-bottom: 4rem;
+  }
+
+  .back a {
+    color: var(--petroleo-55);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .back a:hover {
+    color: var(--petroleo);
+  }
+
+  /* Post header */
+  .post-header {
+    margin-bottom: 4rem;
+  }
+
+  .post-title {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 35, 'opsz' 144;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--petroleo);
+    max-width: 18ch;
+  }
+
+  .post-date {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--petroleo-55);
+  }
+
+  /* Post body — reading layout */
+  .post-body {
+    font-family: var(--sans);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--petroleo);
+    max-width: 640px;
+  }
+
+  /* All elements inside post body */
+  .post-body :global(p) {
+    margin-bottom: 1.4rem;
+  }
+
+  .post-body :global(h2) {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 35, 'opsz' 96;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--petroleo);
+    margin: 3rem 0 1.2rem;
+  }
+
+  .post-body :global(h3) {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 35, 'opsz' 72;
+    font-weight: 500;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--petroleo);
+    margin: 2.4rem 0 1rem;
+  }
+
+  .post-body :global(a) {
+    color: var(--petroleo);
+    text-decoration: none;
+    font-weight: 500;
+    background-image: linear-gradient(transparent 68%, var(--camel-soft) 68%);
+    background-size: 100% 100%;
+    padding: 0 2px;
+    transition: background-image 0.35s ease;
+  }
+
+  .post-body :global(a:hover) {
+    background-image: linear-gradient(transparent 0%, var(--camel-soft) 0%);
+  }
+
+  .post-body :global(strong) {
+    font-weight: 600;
+    color: var(--petroleo);
+  }
+
+  .post-body :global(em) {
+    font-family: var(--display);
+    font-style: italic;
+    font-variation-settings: 'SOFT' 40, 'opsz' 72;
+  }
+
+  .post-body :global(blockquote) {
+    border-left: 3px solid var(--camel);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+    font-family: var(--display);
+    font-style: italic;
+    font-variation-settings: 'SOFT' 40, 'opsz' 96;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: var(--petroleo);
+  }
+
+  .post-body :global(blockquote p) {
+    margin-bottom: 0;
+  }
+
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    margin: 1.4rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .post-body :global(li) {
+    margin-bottom: 0.6rem;
+    padding-left: 0.4rem;
+  }
+
+  .post-body :global(li::marker) {
+    color: var(--camel);
+  }
+
+  .post-body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--petroleo-12);
+    margin: 3rem 0;
+  }
+
+  .post-body :global(img) {
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    border-radius: 2px;
+  }
+
+  .post-body :global(code) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.92em;
+    background: rgba(214, 178, 126, 0.15);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+
+  .post-body :global(pre) {
+    background: var(--petroleo);
+    color: var(--crudo);
+    padding: 1.2rem 1.5rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 1.6rem 0;
+  }
+
+  .post-body :global(pre code) {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  /* Post footer */
+  .post-footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--petroleo-12);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .back-link {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--petroleo-65);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .back-link:hover {
+    color: var(--petroleo);
+  }
+
+  .byline {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--petroleo-55);
+  }
+
+  @media (max-width: 640px) {
+    .post-container {
+      padding: 1.75rem 1.5rem 3rem;
+    }
+    .back {
+      margin-bottom: 2.5rem;
+    }
+    .post-header {
+      margin-bottom: 3rem;
+    }
+    .post-title {
+      max-width: 100%;
+    }
+    .post-body {
+      font-size: 1.05rem;
+    }
+    .post-footer {
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+  }
+</style>
