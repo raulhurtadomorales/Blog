@@ -1,0 +1,488 @@
+---
+// Página: /portafolio-studio/  ·  Archivo: src/pages/portafolio-studio.astro
+//
+// CÓMO SE LLENA
+// Cada pieza tiene "src". Mientras esté vacío (''), la página muestra una caja "pendiente".
+//   Imágenes y GIF:  guárdalos en public/portafolio/<caso>/ y escribe la ruta, ej. '/portafolio/sognare/master-graphic.jpg'
+//   Audio (radio):   igual, en public/portafolio/sognare/, ej. '/portafolio/sognare/radio-1.mp3'
+//   Videos:          NO van en el repo. Súbelos a Vimeo o YouTube y pega el link de embed:
+//                    Vimeo   -> 'https://player.vimeo.com/video/ID'
+//                    YouTube -> 'https://www.youtube-nocookie.com/embed/ID'
+// Formatos: 'horizontal' (16:9), 'vertical' (9:16), 'cuadrado' (1:1), 'audio'.
+// Si un resultado no existe, déjalo en '' y la línea no aparece.
+//
+// La página usa el Layout del sitio (paleta, tipografías, grano y analytics) y lleva noindex.
+// No está ligada desde ninguna otra página.
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const casos = [
+  {
+    id: 'sistema-360',
+    etiqueta: 'Sognare, Buen Fin 2025',
+    porque: 'Un sistema 360: producción, medios y resultados.',
+    titulo: '[Nombre de la idea de campaña]',
+    bajada: 'En Buen Fin todas las marcas gritan al mismo tiempo. La apuesta no fue gritar más fuerte, fue que una sola idea viviera en cada punto de contacto sin perder forma: televisión, radio, pantallas, menciones en vivo, marketplace y tienda.',
+    problema: 'El momento de venta más importante del año, con una campaña que tenía que funcionar en TV, radio, marketplace, sitio propio y retail al mismo tiempo, cada canal con sus propios tiempos y reglas.',
+    rol: 'Dueño de marca, medios, creatividad y producción. Negocié la pauta directo con las televisoras y dirigí la producción de cada formato.',
+    resultado: '+90% en marketplace, +47% D2C, +28% en retail, +25% de sell out en Liverpool y +36% en Suburbia. La marca cerró 14% arriba del plan comercial y 12.5% arriba del año anterior.',
+    grupos: [
+      { principal: true, formato: 'horizontal', piezas: [
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/nTJnDQDZv1M', pie: 'Spot principal. La pieza ancla: todo lo demás se deriva de aquí.' },
+      ]},
+      { nombre: 'Segundo spot', formato: 'horizontal', piezas: [
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/K8DGabLw5AA', pie: 'Misma idea, otro ángulo, para sostener frecuencia sin desgastar.' },
+      ]},
+      { nombre: 'Radio', formato: 'audio', nota: 'Una idea tiene que funcionar sin imagen. Si no se entiende con los ojos cerrados, no era una idea, era un diseño.', piezas: [
+        { tipo: 'audio', src: '', pie: 'Spot de radio 1' },
+        { tipo: 'audio', src: '', pie: 'Spot de radio 2' },
+      ]},
+      { nombre: 'Formatos de TV', formato: 'horizontal', piezas: [
+        { tipo: 'imagen', src: '', pie: 'Display para TV direccionable. Mensaje segmentado sobre la misma señal abierta.' },
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/UfkyfZ4xqd8', pie: 'Plecas animadas. La campaña presente incluso en los segundos que nadie planea.' },
+        { tipo: 'imagen', src: '', pie: 'Ele para menciones. La marca en pantalla mientras el conductor habla del producto.' },
+      ]},
+      { nombre: 'Master graphic', formato: 'horizontal', piezas: [
+        { tipo: 'imagen', src: '', pie: 'El molde del que salen todas las adaptaciones.' },
+      ]},
+    ],
+  },
+  {
+    id: 'produccion-interna',
+    etiqueta: 'Ecofiltro, Buen Fin',
+    porque: 'Producción interna con tono propio.',
+    titulo: '[Nombre de la serie o de la idea]',
+    bajada: 'Un filtro de agua no es una categoría que invite a reírse. Justo por eso lo hicimos. Una serie para social, producida adentro y con recursos propios, para una marca que necesitaba dejar de sonar a folleto.',
+    problema: 'Destacar en el feed durante Buen Fin, cuando todas las marcas publican descuentos y casi ninguna publica algo que dé ganas de ver.',
+    rol: 'Idea, guion y dirección de la producción con el equipo interno.',
+    resultado: '',
+    grupos: [
+      { principal: true, formato: 'cuadrado', piezas: [
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/txyynSbhqtU', pie: 'Pieza 1 de la serie.' },
+      ]},
+      { nombre: 'La serie', formato: 'cuadrado', piezas: [
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/1wlAF1OVHHo', pie: 'Pieza 2' },
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/r3VLSOt9nEs', pie: 'Pieza 3' },
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/6WJ57aGM540', pie: 'Pieza 4' },
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/yorBhoM9GXo', pie: 'Pieza 5' },
+      ]},
+    ],
+  },
+  {
+    id: 'eficiencia',
+    etiqueta: 'Ecofiltro, Puff y Biomattress',
+    porque: 'Eficiencia: más ideas probadas con menos presupuesto.',
+    titulo: 'Probar antes de gastar',
+    bajada: 'Antes, probar una idea costaba una cotización, una junta de presupuesto y tres semanas. Entonces no se probaba: se apostaba. Hoy puedo poner tres versiones de una idea frente a quien decide, antes de comprometer un peso de producción.',
+    problema: 'Cinco marcas, un equipo chico, y más necesidades de contenido que presupuesto para producirlas.',
+    rol: 'Concepto, dirección de arte, generación y composición con IA. En Biomattress, además, grabación, edición, publicación y manejo de comunidad, de punta a punta.',
+    resultado: 'La cuenta de TikTok de Biomattress pasó de 30 a 6,500 seguidores en unos diez meses, operada solo por mí.',
+    grupos: [
+      { principal: true, formato: 'horizontal', piezas: [
+        { tipo: 'imagen', src: '', pie: 'Del producto real al anuncio final: foto del producto, ambiente generado con IA, composición. El producto nunca se inventa. Solo el mundo que lo rodea.' },
+      ]},
+      { nombre: 'Imágenes de campaña con IA', formato: 'horizontal', nota: 'Producidas sin locación ni set.', piezas: [
+        { tipo: 'imagen', src: '', pie: 'Ecofiltro' },
+        { tipo: 'imagen', src: '', pie: 'Ecofiltro' },
+        { tipo: 'imagen', src: '', pie: 'Puff' },
+        { tipo: 'imagen', src: '', pie: 'Puff' },
+        { tipo: 'imagen', src: '', pie: 'Biomattress' },
+        { tipo: 'imagen', src: '', pie: 'Biomattress' },
+      ]},
+      { nombre: 'Biomattress en TikTok', formato: 'vertical', nota: 'Grabado y editado por mí, con un celular y lo que había a la mano. Parte de la operación que llevó la cuenta de 30 a 6,500 seguidores.', piezas: [
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/Ut42DkBSl28', pie: '' },
+        { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/ITNCSmMmnL0', pie: '' },
+        { tipo: 'video', src: '', pie: '' },
+        { tipo: 'video', src: '', pie: '' },
+      ]},
+    ],
+  },
+  {
+    id: 'oficio',
+    etiqueta: 'Interceramic, Teran/TBWA',
+    porque: 'Oficio de agencia y creatividad.',
+    titulo: '¿Y la remodelación cuándo?',
+    bajada: 'Una pregunta que todo el que tiene una casa pendiente ya se hizo. La campaña no vendió piso, vendió el momento en que por fin te decides.',
+    problema: '[Qué necesitaba resolver la marca con esta campaña.]',
+    rol: 'Director de Arte. Campaña 360 en TV, radio, digital, impresos y OOH.',
+    resultado: '',
+    grupos: [
+      { principal: true, formato: 'horizontal', piezas: [
+        { tipo: 'video', src: '', pie: 'Spot de TV.' },
+      ]},
+      { nombre: 'Segundo spot', formato: 'horizontal', piezas: [
+        { tipo: 'video', src: '', pie: '' },
+      ]},
+      { nombre: 'Redes', formato: 'vertical', nota: 'La misma idea, reescrita para quien la ve con el pulgar.', piezas: [
+        { tipo: 'video', src: '', pie: '' },
+        { tipo: 'video', src: '', pie: '' },
+        { tipo: 'video', src: '', pie: '' },
+      ]},
+      { nombre: 'Consumidor final', formato: 'vertical', nota: 'La pregunta, en la calle y en punto de venta.', piezas: [
+        { tipo: 'imagen', src: '', pie: '' },
+        { tipo: 'imagen', src: '', pie: '' },
+        { tipo: 'imagen', src: '', pie: '' },
+        { tipo: 'imagen', src: '', pie: '' },
+      ]},
+      { nombre: 'Arquitectos y obra grande', formato: 'vertical', nota: 'La misma idea, hablada en el idioma de quien especifica materiales, no de quien compra una casa.', piezas: [
+        { tipo: 'imagen', src: '', pie: '' },
+        { tipo: 'imagen', src: '', pie: '' },
+      ]},
+    ],
+  },
+  {
+    id: 'regional',
+    etiqueta: 'M·A·C, IPG Mediabrands',
+    porque: 'Una marca global, trabajada a nivel regional.',
+    titulo: 'Up For Everything Lash',
+    bajada: 'En belleza de prestigio la marca llega hecha desde global. El trabajo regional es el más difícil de ver y el más fácil de arruinar: adaptar sin que se note la costura, para mercados que no quieren sentirse traducidos.',
+    problema: 'Llevar un lanzamiento con lineamientos globales estrictos a la región y hacerlo sentir local.',
+    rol: 'Creative Lead en la unidad regional de Estée Lauder Companies en IPG Mediabrands.',
+    resultado: '',
+    grupos: [
+      { principal: true, formato: 'horizontal', piezas: [
+        { tipo: 'video', src: '', pie: 'Video principal para redes.' },
+      ]},
+      { nombre: 'Formatos verticales', formato: 'vertical', nota: 'El beneficio del producto en dos segundos.', piezas: [
+        { tipo: 'video', src: '', pie: 'Video vertical' },
+        { tipo: 'video', src: '', pie: 'Video promocional' },
+        { tipo: 'imagen', src: '', pie: 'GIF de producto' },
+      ]},
+      { nombre: 'Imágenes de campaña', formato: 'cuadrado', nota: 'Adaptaciones por formato, sin perder el código visual de la marca.', piezas: [
+        { tipo: 'imagen', src: '', pie: '' },
+        { tipo: 'imagen', src: '', pie: '' },
+        { tipo: 'imagen', src: '', pie: '' },
+        { tipo: 'imagen', src: '', pie: '' },
+      ]},
+    ],
+  },
+];
+
+const pendiente = { video: 'Video pendiente', imagen: 'Imagen pendiente', audio: 'Audio pendiente' };
+
+// true: las piezas sin "src" no se muestran (y un grupo sin piezas tampoco). Así la página se ve completa aunque falte material.
+// false: se ven las cajas "pendiente", útil mientras llenas.
+const ocultarVacios = true;
+const visibles = (piezas) => (ocultarVacios ? piezas.filter((p) => p.src) : piezas);
+---
+
+<BaseLayout
+  title="Raúl Hurtado · Selección de trabajo"
+  description="Selección de trabajo de Raúl Hurtado."
+  canonicalPath="/portafolio-studio/"
+  noindex={true}
+>
+  <main class="pf">
+    <header class="intro">
+      <h1 class="fade d1">Raúl Hurtado</h1>
+      <p class="tesis fade d2">Construyo estudios de contenido que operan con estándar de agencia y con lo único que una agencia nunca tiene: el contexto del negocio.</p>
+      <p class="contexto fade d3">Dieciséis años entre agencia creativa y lado cliente. Hoy dirijo marca, medios, creatividad y producción de un portafolio de cinco marcas de consumo. Estos cinco casos no son lo más bonito que he hecho. Son lo que mejor explica cómo trabajo.</p>
+      <nav class="indice fade d4" aria-label="Casos">
+        <ol>
+          {casos.map((c) => <li><a href={`#${c.id}`}>{c.porque}</a></li>)}
+        </ol>
+      </nav>
+    </header>
+
+    {casos.map((c) => (
+      <section class="caso" id={c.id}>
+        <p class="etiqueta">{c.etiqueta}</p>
+        <p class="porque">{c.porque}</p>
+        <h2>{c.titulo}</h2>
+        <p class="bajada">{c.bajada}</p>
+
+        {c.grupos.map((g, gi) => (
+          <Fragment>
+            {visibles(g.piezas).length > 0 && (
+            <div class={`grupo${g.principal ? ' es-principal' : ''}`}>
+              {g.nombre && <h3>{g.nombre}</h3>}
+              {g.nota && <p class="nota">{g.nota}</p>}
+              <div class={`rejilla ${g.formato}`}>
+                {visibles(g.piezas).map((p) => (
+                  <figure class="pieza">
+                    {p.tipo === 'video' && p.src && (
+                      <div class={`marco ${g.formato}`}>
+                        <iframe src={p.src} title={p.pie || c.titulo} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                    )}
+                    {p.tipo === 'imagen' && p.src && <img src={p.src} alt={p.pie || c.titulo} loading="lazy" />}
+                    {p.tipo === 'audio' && p.src && <audio controls preload="none" src={p.src}></audio>}
+                    {!p.src && <div class={`marco ${g.formato} vacio`}><span>{pendiente[p.tipo]}</span></div>}
+                    {p.pie && <figcaption>{p.pie}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+            </div>
+            )}
+            {gi === 0 && (
+              <dl class="ficha">
+                <dt>El problema</dt><dd>{c.problema}</dd>
+                <dt>Mi rol</dt><dd>{c.rol}</dd>
+                {c.resultado && <Fragment><dt>El resultado</dt><dd class="resultado">{c.resultado}</dd></Fragment>}
+              </dl>
+            )}
+          </Fragment>
+        ))}
+      </section>
+    ))}
+
+    <footer class="cierre">
+      <p>Birdman quiere operar como la mejor agencia de México, desde adentro del negocio. Eso es lo que he estado construyendo estos años, aunque sin ese nombre.</p>
+      <p class="enlaces">Más trabajo en <a href="https://www.behance.net/raulhurtado" target="_blank" rel="noopener noreferrer">Behance</a>. Trayectoria completa en <a href="https://www.linkedin.com/in/rahurtado/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+    </footer>
+
+    <div class="site-footer">
+      <span>© 2026 Raúl Hurtado</span>
+      <span>raulhurtadomorales.com</span>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Tokens y fondo vienen de src/styles/global.css (vía BaseLayout).
+     Aquí solo lo propio de esta página, con el mismo tratamiento tipográfico del sitio. */
+
+  .pf {
+    position: relative;
+    z-index: 2; /* por encima del grano del sitio */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3.5rem 4rem;
+    color: var(--petroleo);
+  }
+
+  /* — Intro (mismo lenguaje que el hero del home) — */
+  .intro {
+    position: relative;
+    max-width: 46rem;
+    margin-bottom: 5rem;
+  }
+  .intro::before {
+    content: '';
+    position: absolute;
+    inset: -30% -25% -10% -25%;
+    background: radial-gradient(ellipse 60% 50% at 30% 30%, rgba(214, 178, 126, 0.28), transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  h1 {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 30, 'WONK' 1, 'opsz' 144;
+    font-weight: 400;
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    margin-bottom: 2rem;
+  }
+  .tesis {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 40, 'opsz' 72;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.35rem, 2.6vw, 1.8rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.5rem;
+  }
+  .contexto {
+    font-size: clamp(1.02rem, 1.2vw, 1.12rem);
+    line-height: 1.65;
+    color: var(--petroleo-80);
+    margin-bottom: 2.75rem;
+  }
+
+  .indice ol {
+    padding-left: 1.25rem;
+    line-height: 2.1;
+    color: var(--petroleo-55);
+  }
+  .indice li::marker {
+    font-size: 0.85rem;
+  }
+
+  /* — Links tipo marcador, como en el resto del sitio — */
+  .indice a,
+  .cierre a {
+    color: var(--petroleo);
+    text-decoration: none;
+    font-weight: 500;
+    background-image: linear-gradient(transparent 68%, var(--camel-soft) 68%);
+    padding: 0 2px;
+    transition: background-image 0.35s ease;
+  }
+  .indice a:hover,
+  .indice a:focus-visible,
+  .cierre a:hover,
+  .cierre a:focus-visible {
+    background-image: linear-gradient(transparent 0%, var(--camel-soft) 0%);
+  }
+
+  /* — Casos — */
+  .caso {
+    padding-top: 4rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--petroleo-12);
+    scroll-margin-top: 1.5rem;
+  }
+  .etiqueta {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--petroleo-55);
+    margin-bottom: 1rem;
+  }
+  .porque {
+    font-weight: 600;
+    color: var(--petroleo);
+    margin-bottom: 1rem;
+    padding-left: 0.9rem;
+    border-left: 3px solid var(--camel);
+  }
+  h2 {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 35, 'opsz' 144;
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+  }
+  .bajada {
+    font-size: clamp(1.05rem, 1.3vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--petroleo-80);
+    max-width: 44rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .grupo {
+    margin-bottom: 2.5rem;
+  }
+  h3 {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 35, 'opsz' 72;
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+  }
+  .nota {
+    color: var(--petroleo-65);
+    max-width: 40rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  /* — Rejillas y piezas (estructura original) — */
+  .rejilla { display: grid; gap: 1rem; align-items: start; }
+  .rejilla.horizontal { grid-template-columns: repeat(auto-fill, minmax(min(24rem, 100%), 1fr)); }
+  .rejilla.vertical { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
+  .rejilla.cuadrado { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+  .rejilla.audio { grid-template-columns: 1fr; max-width: 36rem; }
+  .es-principal .rejilla { grid-template-columns: 1fr; }
+  .es-principal .marco.vertical { max-width: 22rem; }
+  .es-principal .marco.cuadrado { max-width: 34rem; }
+
+  .pieza { margin: 0; }
+  .marco { position: relative; width: 100%; background: var(--petroleo); border-radius: 2px; overflow: hidden; }
+  .marco.horizontal { aspect-ratio: 16 / 9; }
+  .marco.vertical { aspect-ratio: 9 / 16; }
+  .marco.cuadrado { aspect-ratio: 1 / 1; }
+  .marco.audio { height: 3.25rem; }
+  .marco iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .marco.vacio {
+    background: rgba(27, 46, 42, 0.06);
+    border: 1px dashed rgba(27, 46, 42, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .marco.vacio span { color: var(--petroleo-55); font-size: 0.85rem; }
+  .pieza img { display: block; width: 100%; height: auto; border-radius: 2px; }
+  .pieza audio { width: 100%; }
+  figcaption {
+    color: var(--petroleo-65);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-top: 0.6rem;
+  }
+
+  /* — Ficha: mismo split label/cuerpo de las rows del home — */
+  .ficha {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1rem 4rem;
+    max-width: 56rem;
+    margin: 0 0 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--petroleo-12);
+    border-bottom: 1px solid var(--petroleo-12);
+  }
+  .ficha dt {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--petroleo-35, rgba(27, 46, 42, 0.35));
+    padding-top: 0.3rem;
+  }
+  .ficha dd {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--petroleo-80);
+  }
+  .ficha .resultado {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 35, 'opsz' 72;
+    font-size: 1.2rem;
+    line-height: 1.45;
+    color: var(--petroleo);
+  }
+
+  /* — Cierre — */
+  .cierre {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--petroleo-12);
+    max-width: 46rem;
+  }
+  .cierre p {
+    font-family: var(--display);
+    font-variation-settings: 'SOFT' 40, 'opsz' 72;
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+  }
+  .cierre .enlaces {
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--petroleo-65);
+  }
+
+  /* — Footer común del sitio — */
+  .site-footer {
+    margin-top: 5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--petroleo-12);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--petroleo-55);
+  }
+
+  @media (max-width: 860px) {
+    .pf { padding: 3rem 2rem 3rem; }
+    .ficha { grid-template-columns: 1fr; gap: 0.3rem; }
+    .ficha dd { margin-bottom: 1rem; }
+  }
+  @media (max-width: 480px) {
+    .pf { padding: 2.5rem 1.5rem 2.5rem; }
+    .site-footer { flex-direction: column; gap: 0.4rem; }
+  }
+</style>
