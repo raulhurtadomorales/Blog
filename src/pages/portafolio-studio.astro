@@ -10,6 +10,7 @@
 //                    YouTube -> 'https://www.youtube-nocookie.com/embed/ID'
 // Formatos: 'horizontal' (16:9), 'vertical' (9:16), 'cuadrado' (1:1), 'audio'.
 // Si un resultado no existe, déjalo en '' y la línea no aparece.
+// Para que una imagen salga en grande dentro de su grupo, agrégale  destacada: true  (y ponla primero).
 //
 // La página usa el Layout del sitio (paleta, tipografías, grano y analytics) y lleva noindex.
 // No está ligada desde ninguna otra página.
@@ -87,7 +88,7 @@ const casos = [
         { tipo: 'imagen', src: '/portafolio/eficiencia/puff-1.jpg', pie: 'Puff' },
         { tipo: 'imagen', src: '/portafolio/eficiencia/puff-2.jpg', pie: 'Puff' },
         { tipo: 'imagen', src: '/portafolio/eficiencia/biomattress-2.jpg', pie: 'Biomattress' },
-        { tipo: 'imagen', src: '', pie: 'Biomattress' },
+        { tipo: 'imagen', src: '/portafolio/eficiencia/biomattres-1.jpg', pie: 'Biomattress' },
       ]},
       { nombre: 'Biomattress en TikTok', formato: 'vertical', nota: 'Grabado y editado por mí, con un celular y lo que había a la mano. Parte de la operación que llevó la cuenta de 30 a 6,500 seguidores.', piezas: [
         { tipo: 'video', src: 'https://www.youtube-nocookie.com/embed/Ut42DkBSl28', pie: '' },
@@ -119,10 +120,10 @@ const casos = [
         { tipo: 'video', src: '', pie: '' },
       ]},
       { nombre: 'Consumidor final', formato: 'vertical', nota: 'La pregunta, en la calle y en punto de venta.', piezas: [
+        { tipo: 'imagen', src: '/portafolio/interceramic/consumidor-4.webp', pie: '', destacada: true },
         { tipo: 'imagen', src: '/portafolio/interceramic/consumidor-1.webp', pie: '' },
         { tipo: 'imagen', src: '/portafolio/interceramic/consumidor-2.webp', pie: '' },
         { tipo: 'imagen', src: '/portafolio/interceramic/consumidor-3.webp', pie: '' },
-        { tipo: 'imagen', src: '/portafolio/interceramic/consumidor-4.webp', pie: '' },
       ]},
       { nombre: 'Arquitectos y obra grande', formato: 'vertical', nota: 'La misma idea, hablada en el idioma de quien especifica materiales, no de quien compra una casa.', piezas: [
         { tipo: 'imagen', src: '/portafolio/interceramic/arquitectos-1.webp', pie: '' },
@@ -149,10 +150,9 @@ const casos = [
         { tipo: 'imagen', src: '/portafolio/mac/gif-producto.gif', pie: 'GIF de producto' },
       ]},
       { nombre: 'Imágenes de campaña', formato: 'cuadrado', nota: 'Adaptaciones por formato, sin perder el código visual de la marca.', piezas: [
+        { tipo: 'imagen', src: '/portafolio/mac/campana-3.webp', pie: '', destacada: true },
         { tipo: 'imagen', src: '/portafolio/mac/campana-1.webp', pie: '' },
         { tipo: 'imagen', src: '/portafolio/mac/campana-2.webp', pie: '' },
-        { tipo: 'imagen', src: '/portafolio/mac/campana-3.webp', pie: '' },
-        { tipo: 'imagen', src: '/portafolio/mac/campana-4.webp', pie: '' },
       ]},
     ],
   },
@@ -199,7 +199,7 @@ const visibles = (piezas) => (ocultarVacios ? piezas.filter((p) => p.src) : piez
               {g.nota && <p class="nota">{g.nota}</p>}
               <div class={`rejilla ${g.formato}`}>
                 {visibles(g.piezas).map((p) => (
-                  <figure class="pieza">
+                  <figure class={`pieza${p.destacada ? ' destacada' : ''}`}>
                     {p.tipo === 'video' && p.src && (
                       <div class={`marco ${g.formato}`}>
                         <iframe src={p.src} title={p.pie || c.titulo} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -386,6 +386,9 @@ const visibles = (piezas) => (ocultarVacios ? piezas.filter((p) => p.src) : piez
   .es-principal .marco.cuadrado { max-width: 34rem; }
 
   .pieza { margin: 0; }
+  /* Pieza destacada: ocupa todo el ancho del grupo; el resto queda en la rejilla chica */
+  .pieza.destacada { grid-column: 1 / -1; }
+  .pieza.destacada img { width: auto; max-width: 100%; max-height: 85vh; }
   .marco { position: relative; width: 100%; background: var(--petroleo); border-radius: 2px; overflow: hidden; }
   .marco.horizontal { aspect-ratio: 16 / 9; }
   .marco.vertical { aspect-ratio: 9 / 16; }
