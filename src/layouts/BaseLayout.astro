@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   ogTitle?: string;
   canonicalPath?: string;
+noindex?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   description = 'Marketing leader con 15 años en la intersección de estrategia, medios y negocio. Diseña y opera sistemas de marketing para marcas de consumo masivo en México.',
   ogTitle,
   canonicalPath = '/',
+noindex = false,
 } = Astro.props;
 
 const canonical = `https://raulhurtadomorales.com${canonicalPath}`;
@@ -29,6 +31,7 @@ const canonical = `https://raulhurtadomorales.com${canonicalPath}`;
     <meta name="description" content={description} />
     <meta name="author" content="Raúl Hurtado Morales" />
     <link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
    <meta name="google-site-verification" content="B-0OcoPVnLX8x_y4O0nSI6vyyDLeemmZj7Vf8C02LL4" />
 
    <meta property="og:type" content="website" />
